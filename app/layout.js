@@ -1,6 +1,7 @@
 import { Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
       <body className={`${geist.className} min-h-screen`}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

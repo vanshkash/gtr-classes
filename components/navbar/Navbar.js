@@ -7,7 +7,6 @@ const navLinks = [
   { name: "Notes", href: "/notes" },
   { name: "About Us", href: "/about" },
   { name: "Success Stories", href: "/success-stories" },
-  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
 
