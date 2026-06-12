@@ -27,7 +27,7 @@ export default function AdminLayout({ children }) {
           </Link>
 
           <Link
-            href="/admin/courses/1/notes"
+            href="/admin/notes"
             className="block hover:text-blue-600"
           >
             Notes

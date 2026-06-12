@@ -4,6 +4,7 @@ import CoursePage from "@/app/courses/page";
 import AboutPage from "./about/page";
 import SuccessStoriesPage from "./success-stories/page";
 import ContactPage from "./contact/page";
+import NotesPage from "@/app/notes/page";
 
 export default function HomePage(){
   return (
@@ -11,6 +12,7 @@ export default function HomePage(){
       {/* <Navbar /> */}
       <Hero />
       <CoursePage />
+      <NotesPage />
       <AboutPage/>
       <SuccessStoriesPage />
       <ContactPage />
