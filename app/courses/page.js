@@ -12,10 +12,10 @@ export default async function CoursesPage() {
   );
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16">
+    <section className="mx-auto max-w-7xl px-8 lg:px-2 py-16">
       <div className="mb-10">
         <h1 className="text-4xl font-bold">
-          Our Popular Courses
+          Our <span className="text-blue-600">Courses</span>
         </h1>
 
         <p className="mt-2 text-gray-500">
@@ -23,7 +23,7 @@ export default async function CoursesPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 lg:gap-2 md:grid-cols-3 lg:grid-cols-4">
         {serializedCourses.map((course) => (
           <CourseCard
             key={course._id}

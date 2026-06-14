@@ -31,6 +31,7 @@ export async function POST(req) {
     const course = formData.get("course");
     const price = Number(formData.get("price"));
     const isPublished = formData.get("isPublished") === "true";
+    const type = formData.get("type") || "notes";
     const pdf = formData.get("pdf");
 
     if (!pdf) {
@@ -63,6 +64,7 @@ export async function POST(req) {
       slug,
       description,
       course: course || null,
+      type,
       price,
       pdfUrl: uploadResult.secure_url,
       cloudinaryId: uploadResult.public_id,

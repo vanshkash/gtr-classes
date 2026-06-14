@@ -19,6 +19,7 @@ export default async function PreviewPage({ params }) {
   pdfUrl={note.pdfUrl}
   price={note.price}
   course={note.course?.title}
+  type={note.type}
 />
   );
 }

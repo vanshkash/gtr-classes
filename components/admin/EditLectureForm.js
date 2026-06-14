@@ -12,23 +12,69 @@ export default function EditLectureForm({ lecture }) {
     description: lecture.description || "",
   });
 
-  const handleUpdate = async () => {
-    const res = await fetch(
-      `/api/lectures/${lecture._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      }
-    );
+ function extractYoutubeId(input) {
+  if (!input) return "";
 
-    if (res.ok) {
-      router.back();
-      router.refresh();
+  // Agar already 11-char ID hai
+  if (/^[a-zA-Z0-9_-]{11}$/.test(input)) {
+    return input;
+  }
+
+  try {
+    const url = new URL(input);
+
+    // youtu.be
+    if (url.hostname.includes("youtu.be")) {
+      return url.pathname.slice(1);
     }
-  };
+
+    // watch?v=
+    const videoId = url.searchParams.get("v");
+    if (videoId) {
+      return videoId;
+    }
+
+    // shorts
+    if (url.pathname.startsWith("/shorts/")) {
+      return url.pathname.split("/shorts/")[1];
+    }
+
+    // embed
+    if (url.pathname.startsWith("/embed/")) {
+      return url.pathname.split("/embed/")[1];
+    }
+  } catch (e) {}
+
+  return "";
+}
+
+  const handleUpdate = async () => {
+  const youtubeId = extractYoutubeId(form.youtubeId);
+
+  if (!youtubeId) {
+    alert("Please enter a valid YouTube URL");
+    return;
+  }
+
+  const res = await fetch(
+    `/api/lectures/${lecture._id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...form,
+        youtubeId,
+      }),
+    }
+  );
+
+  if (res.ok) {
+    router.back();
+    router.refresh();
+  }
+};
 
   return (
     <div className="space-y-5">
@@ -53,7 +99,7 @@ export default function EditLectureForm({ lecture }) {
           })
         }
         className="w-full border rounded-xl p-3"
-        placeholder="YouTube Video ID"
+        placeholder="YouTube Video URL"
       />
 
       <textarea

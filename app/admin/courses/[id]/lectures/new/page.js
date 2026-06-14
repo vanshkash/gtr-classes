@@ -13,29 +13,74 @@ export default function NewLecturePage({ params }) {
     notesUrl: "",
   });
 
-  const handleSubmit = async () => {
-    const { id } = await params;
+function extractYoutubeId(input) {
+  if (!input) return "";
 
-    const res = await fetch("/api/lectures", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        courseId: id,
-        title: form.title,
-        youtubeId: form.youtubeId,
-        description: form.description,
-        notesUrl: form.notesUrl,
-        order: 1,
-      }),
-    });
+  // Agar already 11-character ID hai
+  if (/^[a-zA-Z0-9_-]{11}$/.test(input)) {
+    return input;
+  }
 
-    if (res.ok) {
-      router.push(`/admin/courses/${id}`);
-      router.refresh();
+  try {
+    const url = new URL(input);
+
+    // https://youtu.be/VIDEO_ID
+    if (url.hostname === "youtu.be") {
+      return url.pathname.slice(1);
     }
-  };
+
+    // https://www.youtube.com/watch?v=VIDEO_ID
+    const videoId = url.searchParams.get("v");
+    if (videoId) {
+      return videoId;
+    }
+
+    // https://www.youtube.com/shorts/VIDEO_ID
+    if (url.pathname.startsWith("/shorts/")) {
+      return url.pathname.split("/shorts/")[1];
+    }
+
+    // https://www.youtube.com/embed/VIDEO_ID
+    if (url.pathname.startsWith("/embed/")) {
+      return url.pathname.split("/embed/")[1];
+    }
+  } catch (err) {
+    return "";
+  }
+
+  return "";
+}
+
+  const handleSubmit = async () => {
+  const { id } = await params;
+
+  const youtubeId = extractYoutubeId(form.youtubeId);
+
+  if (!youtubeId) {
+    alert("Please enter a valid YouTube URL");
+    return;
+  }
+
+  const res = await fetch("/api/lectures", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      courseId: id,
+      title: form.title,
+      youtubeId,
+      description: form.description,
+      notesUrl: form.notesUrl,
+      order: 1,
+    }),
+  });
+
+  if (res.ok) {
+    router.push(`/admin/courses/${id}`);
+    router.refresh();
+  }
+};
 
   return (
     <div className="max-w-3xl">
@@ -59,7 +104,7 @@ export default function NewLecturePage({ params }) {
 
         <input
           type="text"
-          placeholder="YouTube Video ID"
+          placeholder="Paste YouTube Video URL"
           value={form.youtubeId}
           onChange={(e) =>
             setForm({
@@ -78,19 +123,6 @@ export default function NewLecturePage({ params }) {
             setForm({
               ...form,
               description: e.target.value,
-            })
-          }
-          className="w-full border rounded-xl p-3"
-        />
-
-        <input
-          type="text"
-          placeholder="PDF Notes URL (Optional)"
-          value={form.notesUrl}
-          onChange={(e) =>
-            setForm({
-              ...form,
-              notesUrl: e.target.value,
             })
           }
           className="w-full border rounded-xl p-3"

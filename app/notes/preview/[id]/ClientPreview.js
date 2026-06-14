@@ -17,6 +17,7 @@ export default function ClientPreview({
   pdfUrl,
   price,
   course,
+   type = "notes",
 }) {
   return (
     <div className="max-w-7xl mx-auto px-2 py-4">
@@ -28,7 +29,7 @@ export default function ClientPreview({
           className="inline-flex items-center gap-2 text-gray-600 hover:text-black transition font-medium"
         >
           <ArrowLeft size={18} />
-          Back to Notes
+          Back to {type === "test-series" ? "Test Series" : "Notes"}
         </Link>
 
       {/* Main Layout */}
@@ -41,7 +42,9 @@ export default function ClientPreview({
             {/* PDF Header */}
             <div className="flex items-center justify-between border-b px-6 py-4 bg-gray-50">
               <h2 className="font-semibold text-lg">
-                Preview
+                {type === "test-series"
+  ? "Test Series Preview"
+  : "Notes Preview"}
               </h2>
 
               <span className="text-sm text-gray-500">
@@ -87,19 +90,21 @@ export default function ClientPreview({
             <div className="mt-8 border-t pt-6">
 
               <p className="text-gray-600 text-sm leading-6">
-                You are currently viewing only the first 2 pages.
-                  Purchase the full notes to unlock complete access.
-              </p>
+  You are currently viewing only the first 4 pages.
+  Purchase the full{" "}
+  {type === "test-series" ? "test series" : "notes"}{" "}
+  to unlock complete access.
+</p>
 
               <button className="w-full mt-6 bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition font-medium">
-                Buy Full Notes
+                Buy Full {type === "test-series" ? "Test Series" : "Notes"}
               </button>
 
               <Link
                 href="/notes"
                 className="block w-full mt-3 text-center border py-3 rounded-xl hover:bg-gray-50 transition"
               >
-                Back to Notes
+                Back to {type === "test-series" ? "Test Series" : "Notes"}
               </Link>
 
             </div>
@@ -131,7 +136,11 @@ export default function ClientPreview({
 
                 <div className="flex items-center gap-3">
                   <CheckCircle size={20} className="text-green-500" />
-                  <span>Complete PDF Notes</span>
+                  <span>{
+  type === "test-series"
+    ? "Complete Test Series PDF"
+    : "Complete PDF Notes"
+}</span>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -146,7 +155,11 @@ export default function ClientPreview({
 
                 <div className="flex items-center gap-3">
                   <CheckCircle size={20} className="text-green-500" />
-                  <span>High Quality Exam-Oriented Content</span>
+                  <span>{
+  type === "test-series"
+    ? "Exam-Oriented Practice Tests"
+    : "High Quality Exam-Oriented Notes"
+}</span>
                 </div>
 
               </div>

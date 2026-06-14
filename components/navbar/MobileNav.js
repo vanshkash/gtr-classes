@@ -9,12 +9,22 @@ export default function MobileNav({ navLinks }) {
 
   return (
     <div className="lg:hidden">
-      <button onClick={() => setOpen(!open)}>
-        {open ? <X size={28} /> : <Menu size={28} />}
-      </button>
+      <button
+  onClick={() => setOpen(!open)}
+  className="transition-transform duration-300"
+>
+  <div className={`${open ? "rotate-90" : ""} transition-transform duration-300`}>
+    {open ? <X size={28} /> : <Menu size={28} />}
+  </div>
+</button>
 
-      {open && (
-        <div className="absolute left-0 top-20 w-full border-t bg-white shadow-lg">
+      <div
+  className={`absolute left-0 top-16 w-full border-t bg-white shadow-xl transition-all duration-300 origin-top ${
+    open
+      ? "scale-y-100 opacity-100"
+      : "pointer-events-none scale-y-95 opacity-0"
+  }`}
+>
           <div className="flex flex-col gap-4 p-6">
 
             {navLinks.map((link) => (
@@ -45,7 +55,7 @@ export default function MobileNav({ navLinks }) {
             </Link>
           </div>
         </div>
-      )}
+      
     </div>
   );
 }

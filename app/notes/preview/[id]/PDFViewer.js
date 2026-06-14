@@ -10,7 +10,7 @@ pdfjs.GlobalWorkerOptions.workerSrc =
 
 export default function PDFViewer({ pdfUrl }) {
   const [width, setWidth] = useState(700);
-
+  const [numPages, setNumPages] = useState(0);
 
   useEffect(() => {
     const updateWidth = () => {
@@ -26,50 +26,31 @@ export default function PDFViewer({ pdfUrl }) {
     updateWidth();
     window.addEventListener("resize", updateWidth);
 
-    return () =>
-      window.removeEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
   return (
     <div className="flex flex-col items-center gap-8">
-  <Document file={pdfUrl}>
-
-    <div className="shadow-xl rounded-lg overflow-hidden">
-      <Page
-        pageNumber={1}
-        width={width}
-        renderTextLayer={false}
-        renderAnnotationLayer={false}
-      />
+      <Document
+        file={pdfUrl}
+        onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+      >
+        {Array.from({
+          length: Math.min(numPages, 4), // Maximum 4 pages preview
+        }).map((_, index) => (
+          <div
+            key={index}
+            className="shadow-xl rounded-lg overflow-hidden"
+          >
+            <Page
+              pageNumber={index + 1}
+              width={width}
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
+            />
+          </div>
+        ))}
+      </Document>
     </div>
-
-    <div className="shadow-xl rounded-lg overflow-hidden">
-      <Page
-        pageNumber={2}
-        width={width}
-        renderTextLayer={false}
-        renderAnnotationLayer={false}
-      />
-    </div>
-    <div className="shadow-xl rounded-lg overflow-hidden">
-      <Page
-        pageNumber={3}
-        width={width}
-        renderTextLayer={false}
-        renderAnnotationLayer={false}
-      />
-    </div>
-    <div className="shadow-xl rounded-lg overflow-hidden">
-      <Page
-        pageNumber={4}
-        width={width}
-        renderTextLayer={false}
-        renderAnnotationLayer={false}
-      />
-    </div>
-    
-
-  </Document>
-</div>
   );
 }

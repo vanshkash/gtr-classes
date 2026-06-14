@@ -14,7 +14,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-16 items-center justify-between">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
@@ -35,7 +35,16 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors"
+                className="
+relative text-sm font-medium text-slate-700
+transition-all duration-300
+hover:text-blue-600
+after:absolute after:left-0 after:-bottom-1
+after:h-[2px] after:w-0
+after:bg-blue-600
+after:transition-all after:duration-300
+hover:after:w-full
+"
               >
                 {link.name}
               </Link>

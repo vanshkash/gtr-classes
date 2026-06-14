@@ -15,10 +15,10 @@ import {
 const quickLinks = [
   { name: "Home", href: "/" },
   { name: "Courses", href: "/courses" },
-  { name: "Study Material", href: "/study-material" },
-  { name: "Test Series", href: "/test-series" },
+  { name: "Notes", href: "/notes" },
+  { name: "About Us", href: "/about" },
   { name: "Success Stories", href: "/success-stories" },
-  { name: "Contact Us", href: "/contact" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const exams = [
@@ -34,48 +34,45 @@ export default function Footer() {
   return (
     <footer className="bg-slate-950 text-slate-300">
 
-      {/* Top */}
+      {/* Main Footer */}
+      <div className="mx-auto max-w-7xl px-6 py-12">
 
-      <div className="mx-auto max-w-7xl px-6 py-14">
-
-        <div className="grid gap-12 lg:grid-cols-4 md:grid-cols-2">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
 
           {/* Brand */}
-
           <div>
 
-            <h2 className="text-3xl font-extrabold text-white">
+            <h2 className="text-2xl font-bold tracking-tight text-white">
               GTR Classes
             </h2>
 
-            <p className="mt-4 leading-7 text-slate-400">
-              Empowering aspirants to crack PGT, TGT,
-              KVS, NVS and DSSSB exams with expert
-              guidance, quality study material and
-              proven results.
+            <p className="mt-4 text-sm leading-6 text-slate-400">
+              GTR Classes provides quality guidance, structured courses,
+              premium notes and test series for aspirants preparing for
+              TGT, PGT, KVS, NVS, DSSSB and other teaching examinations.
             </p>
 
             <div className="mt-6 flex gap-3">
 
               <a
                 href="#"
-                className="rounded-lg bg-slate-800 p-2 transition hover:bg-blue-600"
+                className="rounded-xl bg-slate-800 p-2.5 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-600"
               >
-                <FaFacebookF size={18} />
+                <FaFacebookF size={15} />
               </a>
 
               <a
                 href="#"
-                className="rounded-lg bg-slate-800 p-2 transition hover:bg-pink-600"
+                className="rounded-xl bg-slate-800 p-2.5 transition-all duration-300 hover:-translate-y-1 hover:bg-pink-600"
               >
-                <FaInstagram size={18} />
+                <FaInstagram size={15} />
               </a>
 
               <a
-                href="#"
-                className="rounded-lg bg-slate-800 p-2 transition hover:bg-red-600"
+                href="https://www.youtube.com/@gtrs2660"
+                className="rounded-xl bg-slate-800 p-2.5 transition-all duration-300 hover:-translate-y-1 hover:bg-red-600"
               >
-                <FaYoutube size={18} />
+                <FaYoutube size={15} />
               </a>
 
             </div>
@@ -83,10 +80,9 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-
           <div>
 
-            <h3 className="mb-5 text-lg font-bold text-white">
+            <h3 className="mb-4 text-base font-semibold text-white">
               Quick Links
             </h3>
 
@@ -96,9 +92,9 @@ export default function Footer() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="flex items-center gap-2 transition hover:text-blue-400"
+                  className="flex items-center gap-2 text-sm text-slate-400 transition hover:text-blue-400"
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={14} />
 
                   {link.name}
                 </Link>
@@ -108,11 +104,10 @@ export default function Footer() {
 
           </div>
 
-          {/* Exams */}
-
+          {/* Popular Courses */}
           <div>
 
-            <h3 className="mb-5 text-lg font-bold text-white">
+            <h3 className="mb-4 text-base font-semibold text-white">
               Popular Courses
             </h3>
 
@@ -121,9 +116,9 @@ export default function Footer() {
               {exams.map((item) => (
                 <p
                   key={item}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 text-sm text-slate-400"
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={14} />
 
                   {item} Preparation
                 </p>
@@ -134,10 +129,9 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-
           <div>
 
-            <h3 className="mb-5 text-lg font-bold text-white">
+            <h3 className="mb-4 text-base font-semibold text-white">
               Contact
             </h3>
 
@@ -146,14 +140,14 @@ export default function Footer() {
               <div className="flex gap-3">
 
                 <MapPin
-                  size={20}
-                  className="mt-1 shrink-0 text-blue-400"
+                  size={18}
+                  className="mt-0.5 shrink-0 text-blue-400"
                 />
 
-                <p>
-                  GTR Classes,
+                <p className="text-sm text-slate-400">
+                  Anand Vihar, Hapur
                   <br />
-                  Hapur, Uttar Pradesh
+                  Uttar Pradesh-245101
                 </p>
 
               </div>
@@ -161,22 +155,26 @@ export default function Footer() {
               <div className="flex gap-3">
 
                 <Phone
-                  size={20}
-                  className="text-blue-400"
+                  size={18}
+                  className="shrink-0 text-blue-400"
                 />
 
-                <p>+91 XXXXX XXXXX</p>
+                <a href="tel:+919897335636" className="text-sm text-slate-400">
+                  +91 98973 35636
+                </a>
 
               </div>
 
               <div className="flex gap-3">
 
                 <Mail
-                  size={20}
-                  className="text-blue-400"
+                  size={18}
+                  className="shrink-0 text-blue-400"
                 />
 
-                <p>info@gtrclasses.com</p>
+                <a href="mailto:gtrclasses@gmail.com" className="text-sm text-slate-400">
+                  gtrclasses@gmail.com
+                </a>
 
               </div>
 
@@ -188,32 +186,52 @@ export default function Footer() {
 
       </div>
 
-      {/* Divider */}
+      {/* Bottom Bar */}
 
       <div className="border-t border-slate-800">
 
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-5 text-sm text-slate-400 md:flex-row">
+        <div className="mx-auto max-w-7xl px-6 py-5">
 
-          <p>
-            © {new Date().getFullYear()} GTR Classes.
-            All Rights Reserved.
-          </p>
+          <div className="flex flex-col items-center justify-between gap-4 text-xs text-slate-500 lg:flex-row">
 
-          <div className="flex gap-6">
+            {/* Copyright */}
+            <p className="text-center lg:text-left">
+              © {new Date().getFullYear()} GTR Classes. All Rights Reserved.
+            </p>
 
-            <Link
-              href="/privacy-policy"
-              className="hover:text-white"
-            >
-              Privacy Policy
-            </Link>
+            {/* Policies */}
+            <div className="flex flex-wrap items-center justify-center gap-5">
 
-            <Link
-              href="/terms"
-              className="hover:text-white"
-            >
-              Terms & Conditions
-            </Link>
+              <Link
+                href="/privacy-policy"
+                className="transition hover:text-white"
+              >
+                Privacy Policy
+              </Link>
+
+              <Link
+                href="/terms"
+                className="transition hover:text-white"
+              >
+                Terms & Conditions
+              </Link>
+
+              <Link
+                href="/refund-policy"
+                className="transition hover:text-white"
+              >
+                Refund & Cancellation Policy
+              </Link>
+
+            </div>
+
+            {/* Developer */}
+            <p className="text-center lg:text-right">
+              Designed & Developed by{" "}
+              <span className="font-medium text-slate-300">
+                GTR Team
+              </span>
+            </p>
 
           </div>
 

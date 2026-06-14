@@ -72,7 +72,7 @@ export default function EditNotePage() {
         return;
       }
 
-      alert("✅ Note Updated Successfully");
+      alert("Note Updated Successfully");
 
       router.push("/admin/notes");
     } catch (error) {
@@ -90,7 +90,9 @@ export default function EditNotePage() {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <div className="bg-white border rounded-xl p-6 shadow">
-        <h1 className="text-3xl font-bold mb-6">Edit Note</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-6">
+  Edit Study Material
+</h1>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Title */}

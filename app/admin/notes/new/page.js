@@ -11,9 +11,11 @@ export default function AddNotePage() {
   const [pdf, setPdf] = useState(null);
   const [isPublished, setIsPublished] = useState(true);
   const [courses, setCourses] = useState([]);
+const [type, setType] = useState("notes");
+
   const router = useRouter();
 
-const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchCourses();
@@ -31,53 +33,54 @@ const [loading, setLoading] = useState(false);
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (loading) return;
+    if (loading) return;
 
-  setLoading(true);
+    setLoading(true);
 
-  try {
-    const formData = new FormData();
+    try {
+      const formData = new FormData();
 
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("course", course);
-    formData.append("price", price);
-    formData.append("isPublished", isPublished);
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("course", course);
+      formData.append("price", price);
+      formData.append("type", type);
+      formData.append("isPublished", isPublished);
 
-    if (pdf) {
-      formData.append("pdf", pdf);
+      if (pdf) {
+        formData.append("pdf", pdf);
+      }
+
+      const res = await fetch("/api/notes", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || "Something went wrong");
+        return;
+      }
+
+      alert("✅ Note Added Successfully");
+
+      // Redirect
+      router.push("/admin/notes");
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong");
+    } finally {
+      setLoading(false);
     }
-
-    const res = await fetch("/api/notes", {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert(data.message || "Something went wrong");
-      return;
-    }
-
-    alert("✅ Note Added Successfully");
-
-    // Redirect
-    router.push("/admin/notes");
-  } catch (error) {
-    console.log(error);
-    alert("Something went wrong");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <div className="max-w-3xl mx-auto p-6">
       <div className="bg-white shadow rounded-xl p-6 border">
-        <h1 className="text-2xl font-bold mb-6">Add New Note</h1>
+        <h1 className="text-2xl font-bold mb-6">Add New Note/Test Series</h1>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Title */}
@@ -138,6 +141,22 @@ const [loading, setLoading] = useState(false);
             />
           </div>
 
+          {/* Material Type */}
+<div>
+  <label className="block mb-2 font-medium">
+    Material Type
+  </label>
+
+  <select
+    value={type}
+    onChange={(e) => setType(e.target.value)}
+    className="w-full border rounded-lg px-4 py-2"
+  >
+    <option value="notes">📚 Notes</option>
+    <option value="test-series">📝 Test Series</option>
+  </select>
+</div>
+
           {/* PDF Upload */}
           <div>
             <label className="block mb-2 font-medium">Upload PDF</label>
@@ -164,12 +183,14 @@ const [loading, setLoading] = useState(false);
 
           {/* Button */}
           <button
-  type="submit"
-  disabled={loading}
-  className="bg-black text-white px-6 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
->
-  {loading ? "Publishing..." : "Publish Note"}
-</button>
+            type="submit"
+            disabled={loading}
+            className="bg-black text-white px-6 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading
+  ? "Publishing..."
+  : `Publish ${type === "notes" ? "Note" : "Test Series"}`}
+          </button>
         </form>
       </div>
     </div>

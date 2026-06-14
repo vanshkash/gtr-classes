@@ -12,6 +12,16 @@ export default function NewCoursePage() {
     price: "",
   });
   const handleSubmit = async () => {
+    if (
+    !form.title.trim() ||
+    !form.description.trim() ||
+    !form.thumbnail.trim() ||
+    !form.price
+  ) {
+    alert("Please fill all required fields.");
+    return;
+  }
+
     const res = await fetch("/api/courses", {
       method: "POST",
       headers: {
@@ -67,23 +77,31 @@ export default function NewCoursePage() {
         />
 
         <input
-          placeholder="Price"
+  type="number"
+  min="0"
+  placeholder="Price"
           value={form.price}
-          onChange={(e) =>
-            setForm({
-              ...form,
-              price: Number(e.target.value),
-            })
-          }
+         onChange={(e) =>
+  setForm({
+    ...form,
+    price: e.target.value,
+  })
+}
           className="w-full border rounded-xl p-3"
         />
 
         <button
-          onClick={handleSubmit}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl"
-        >
-          Create Course
-        </button>
+  disabled={
+    !form.title.trim() ||
+    !form.description.trim() ||
+    !form.thumbnail.trim() ||
+    !form.price
+  }
+  onClick={handleSubmit}
+  className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl"
+>
+  Create Course
+</button>
       </div>
     </div>
   );

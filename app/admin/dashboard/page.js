@@ -1,22 +1,33 @@
 import dbConnect from "@/lib/dbConnect";
 import Course from "@/models/Course";
 import Lecture from "@/models/Lecture";
+import Note from "@/models/Note";
 import Link from "next/link";
 
 export default async function DashboardPage() {
   await dbConnect();
 
- const courses = await Course.find()
-  .sort({ createdAt: -1 })
-  .limit(5)
-  .lean();
+  const courses = await Course.find()
+    .sort({ createdAt: -1 })
+    .limit(5)
+    .lean();
+
   const lectures = await Lecture.find().lean();
 
-  const totalCourses = courses.length;
+  const materials = await Note.find().lean();
+
+  const totalCourses = await Course.countDocuments();
   const totalLectures = lectures.length;
 
-  const totalNotes = 10; // Dummy
-  const totalStudents = 0; // Dummy
+  const totalNotes = materials.filter(
+    (item) => !item.type || item.type === "notes"
+  ).length;
+
+  const totalTestSeries = materials.filter(
+    (item) => item.type === "test-series"
+  ).length;
+
+  const totalStudents = 0; // Future
 
   return (
     <div className="space-y-8">
@@ -32,11 +43,12 @@ export default async function DashboardPage() {
         </p>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+      {/* Stats */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6">
 
+        {/* Courses */}
         <div className="bg-white border rounded-2xl p-6 shadow-sm">
-          <p className="text-gray-500 text-sm">
+          <p className="text-sm text-gray-500">
             Total Courses
           </p>
 
@@ -45,8 +57,9 @@ export default async function DashboardPage() {
           </h2>
         </div>
 
+        {/* Lectures */}
         <div className="bg-white border rounded-2xl p-6 shadow-sm">
-          <p className="text-gray-500 text-sm">
+          <p className="text-sm text-gray-500">
             Total Lectures
           </p>
 
@@ -55,9 +68,10 @@ export default async function DashboardPage() {
           </h2>
         </div>
 
+        {/* Notes */}
         <div className="bg-white border rounded-2xl p-6 shadow-sm">
-          <p className="text-gray-500 text-sm">
-            Total Notes
+          <p className="text-sm text-gray-500">
+            Study Notes
           </p>
 
           <h2 className="text-4xl font-bold mt-2">
@@ -65,9 +79,21 @@ export default async function DashboardPage() {
           </h2>
         </div>
 
+        {/* Test Series */}
         <div className="bg-white border rounded-2xl p-6 shadow-sm">
-          <p className="text-gray-500 text-sm">
-            Total Students
+          <p className="text-sm text-gray-500">
+            Test Series
+          </p>
+
+          <h2 className="text-4xl font-bold mt-2">
+            {totalTestSeries}
+          </h2>
+        </div>
+
+        {/* Students */}
+        <div className="bg-white border rounded-2xl p-6 shadow-sm">
+          <p className="text-sm text-gray-500">
+            Students
           </p>
 
           <h2 className="text-4xl font-bold mt-2">
@@ -77,43 +103,58 @@ export default async function DashboardPage() {
 
       </div>
 
-      {/* Recent Courses + Quick Actions */}
-      <div className="grid lg:grid-cols-2 gap-6">
+      {/* Bottom Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {/* Recent Courses */}
         <div className="bg-white border rounded-2xl p-6 shadow-sm">
 
-          <h2 className="text-xl font-bold mb-5">
-            Recent Courses
-          </h2>
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-xl font-bold">
+              Recent Courses
+            </h2>
 
-          <div className="space-y-4">
-
-            {courses.map((course) => (
-              <div
-               key={course._id}
-                className="flex justify-between items-center border-b pb-3"
-              >
-                <div>
-                  <h3 className="font-medium">
-                    {course.title}
-                  </h3>
-
-                  <p className="text-sm text-gray-500">
-                    Course Available
-                  </p>
-                </div>
-
-                <Link
-                  href={`/admin/courses/${course._id}`}
-                  className="text-blue-600 text-sm"
-                >
-                  View
-                </Link>
-              </div>
-            ))}
-
+            <Link
+              href="/admin/courses"
+              className="text-sm text-blue-600"
+            >
+              View All
+            </Link>
           </div>
+
+          {courses.length === 0 ? (
+            <p className="text-gray-500">
+              No courses found.
+            </p>
+          ) : (
+            <div className="space-y-4">
+
+              {courses.map((course) => (
+                <div
+                  key={course._id}
+                  className="flex items-center justify-between border-b pb-3"
+                >
+                  <div>
+                    <h3 className="font-medium">
+                      {course.title}
+                    </h3>
+
+                    <p className="text-sm text-gray-500">
+                      Course Available
+                    </p>
+                  </div>
+
+                  <Link
+                    href={`/admin/courses/${course._id}`}
+                    className="text-blue-600 text-sm"
+                  >
+                    View
+                  </Link>
+                </div>
+              ))}
+
+            </div>
+          )}
 
         </div>
 
@@ -124,20 +165,34 @@ export default async function DashboardPage() {
             Quick Actions
           </h2>
 
-          <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
             <Link
               href="/admin/courses/new"
-              className="bg-blue-600 text-white text-center py-3 rounded-xl"
+              className="bg-blue-600 hover:bg-blue-700 transition text-white text-center py-3 rounded-xl"
             >
               + Add Course
             </Link>
 
             <Link
               href="/admin/courses"
-              className="border text-center py-3 rounded-xl"
+              className="border hover:bg-gray-50 text-center py-3 rounded-xl"
             >
               Manage Courses
+            </Link>
+
+            <Link
+              href="/admin/notes/new"
+              className="bg-green-600 hover:bg-green-700 transition text-white text-center py-3 rounded-xl"
+            >
+              + Add Study Material
+            </Link>
+
+            <Link
+              href="/admin/notes"
+              className="border hover:bg-gray-50 text-center py-3 rounded-xl"
+            >
+              Manage Materials
             </Link>
 
           </div>

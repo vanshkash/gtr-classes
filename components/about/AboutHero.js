@@ -88,7 +88,7 @@ export default function AboutHero() {
             <div className="absolute left-0 top-0 h-full w-28 bg-gradient-to-r from-white to-transparent z-10" />
 
             <Image
-              src="/about/about-hero2.png"
+              src="/about/about-heros.png"
               alt="GTR Classes"
               width={900}
               height={700}

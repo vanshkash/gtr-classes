@@ -39,19 +39,19 @@ export default function Hero() {
             </p>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-slate-900">
-              Real Students.
-              <br />
-              Real <span className="text-blue-600">Success.</span>
-            </h1>
+  From Preparation
+  <br />
+  To <span className="text-blue-600">Selection.</span>
+</h1>
 
-            <div className="w-16 h-1 bg-blue-600 rounded-full mt-6" />
+<div className="w-16 h-1 bg-blue-600 rounded-full mt-6" />
 
-            <p className="mt-6 text-slate-600 text-lg leading-8 max-w-xl">
-              Every success story we celebrate reflects dedication,
-              expert mentorship, and consistent hard work. Join
-              hundreds of successful students who trusted GTR Classes
-              to achieve their dreams.
-            </p>
+<p className="mt-6 text-slate-600 text-lg leading-8 max-w-xl">
+  Every achievement represents determination, perseverance, and the
+  courage to pursue a dream. At GTR Classes, we are proud to celebrate
+  the remarkable journeys of students who turned their dedication into
+  success and continue to inspire future aspirants.
+</p>
 
             {/* Features */}
 

@@ -19,10 +19,15 @@ const noteSchema = new mongoose.Schema(
     },
 
     course: {
-  type: mongoose.Schema.Types.ObjectId,
-  ref: "Course",
-  default: null,
-},
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course",
+      default: null,
+    },
+    type: {
+      type: String,
+      enum: ["notes", "test-series"],
+      default: "notes",
+    },
 
     price: {
       type: Number,
@@ -46,8 +51,7 @@ const noteSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-export default mongoose.models.Note ||
-  mongoose.model("Note", noteSchema);
+export default mongoose.models.Note || mongoose.model("Note", noteSchema);

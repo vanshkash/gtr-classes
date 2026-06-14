@@ -24,14 +24,16 @@ export default async function EditLecturePage({
       </h1>
 
       <EditLectureForm
-        lecture={{
-          _id: lecture._id.toString(),
-          title: lecture.title,
-          youtubeId: lecture.youtubeId,
-          description:
-            lecture.description || "",
-        }}
-      />
+  lecture={{
+    _id: lecture._id.toString(),
+    title: lecture.title,
+    youtubeId:
+      lecture.youtubeId?.startsWith("http")
+        ? lecture.youtubeId
+        : `https://www.youtube.com/watch?v=${lecture.youtubeId}`,
+    description: lecture.description || "",
+  }}
+/>
     </div>
   );
 }

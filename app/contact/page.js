@@ -11,8 +11,8 @@ export default function ContactPage() {
             Contact Us
           </p>
 
-          <h1 className="mt-3 text-5xl font-bold text-slate-900">
-            Let's Talk About Your Success
+          <h1 className="mt-3 text-3xl lg:text-5xl font-bold text-slate-900">
+            Let's Talk About <span className="text-blue-600">Your Success</span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-slate-600">

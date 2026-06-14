@@ -14,6 +14,16 @@ export default function EditCourseForm({ course }) {
   });
 
   const handleUpdate = async () => {
+    if (
+      !form.title.trim() ||
+      !form.description.trim() ||
+      !form.thumbnail.trim() ||
+      !form.price
+    ) {
+      alert("Please fill all required fields.");
+      return;
+    }
+
     const res = await fetch(`/api/courses/${course._id}`, {
       method: "PUT",
       headers: {
@@ -32,9 +42,7 @@ export default function EditCourseForm({ course }) {
     <div className="space-y-5">
       <input
         value={form.title}
-        onChange={(e) =>
-          setForm({ ...form, title: e.target.value })
-        }
+        onChange={(e) => setForm({ ...form, title: e.target.value })}
         className="w-full border rounded-xl p-3"
         placeholder="Course Title"
       />
@@ -65,11 +73,13 @@ export default function EditCourseForm({ course }) {
       />
 
       <input
+        type="number"
+        min="0"
         value={form.price}
         onChange={(e) =>
           setForm({
             ...form,
-            price: Number(e.target.value),
+            price: e.target.value,
           })
         }
         className="w-full border rounded-xl p-3"
