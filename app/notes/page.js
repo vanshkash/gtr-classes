@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import dbConnect from "@/lib/dbConnect";
 import Note from "@/models/Note";
 import Link from "next/link";

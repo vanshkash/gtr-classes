@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import CourseCard from "@/components/CourseCard";
 import dbConnect from "@/lib/dbConnect";
 import Course from "@/models/Course";
