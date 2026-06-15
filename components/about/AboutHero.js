@@ -28,7 +28,7 @@ export default function AboutHero() {
               </span>
             </h1>
 
-            <p className="mt-6 text-lg text-gray-600 leading-9 max-w-xl">
+            <p className="mt-5 text-sm sm:text-base lg:text-lg text-gray-600 leading-7 max-w-xl">
               GTR Classes is a trusted online learning platform for
               PGT, TGT, NVS, KVS, DSSSB and other teaching exams.
               Our mission is to provide quality education, expert

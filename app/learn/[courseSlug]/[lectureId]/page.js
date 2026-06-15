@@ -50,7 +50,7 @@ export default async function LearnPage({ params }) {
   const featuredNote = notes[0];
 
   return (
-    <div className="max-w-7xl mx-auto grid lg:grid-cols-[3fr_1.2fr] gap-10 p-6">
+    <div className="max-w-7xl mx-auto grid lg:grid-cols-[3fr_1.2fr] gap-10 px-2 sm:px-4 lg:px-6 py-4 sm:py-6">
       {/* LEFT SIDE */}
       <div className="flex flex-col items-start">
         <div className="w-full max-w-4xl">
@@ -63,10 +63,14 @@ export default async function LearnPage({ params }) {
           />
 
           {/* Title */}
-          <h1 className="text-3xl font-bold mt-6">{lecture.title}</h1>
+          <h1 className="mt-4 sm:mt-6 text-lg sm:text-2xl lg:text-3xl font-bold leading-tight line-clamp-2">
+            {lecture.title}
+          </h1>
 
           {/* Description */}
-          <p className="mt-3 text-gray-600 leading-7">{lecture.description}</p>
+          <p className="mt-2 sm:mt-3 text-sm sm:text-base text-gray-600 leading-6 sm:leading-7 line-clamp-3 sm:line-clamp-none">
+            {lecture.description}
+          </p>
 
           {/* Previous / Next */}
           <div className="mt-6 flex justify-between">
@@ -91,8 +95,8 @@ export default async function LearnPage({ params }) {
             )}
           </div>
           {/* Mobile Course Content */}
-          <details className="lg:hidden mt-8 bg-white rounded-2xl p-4 shadow-sm border">
-            <summary className="font-bold cursor-pointer text-lg">
+          <details className="lg:hidden mt-6 bg-white rounded-xl p-3 shadow-sm border">
+            <summary className="font-semibold cursor-pointer text-base">
               Playlist ({lectures.length} Lectures)
             </summary>
 
@@ -100,7 +104,7 @@ export default async function LearnPage({ params }) {
               {lectures.map((item, index) => (
                 <Link key={item._id} href={`/learn/${course.slug}/${item._id}`}>
                   <div
-                    className={`p-3 rounded-xl mt-2 ${
+                    className={`px-3 py-2 rounded-lg mt-2 text-sm leading-snug ${
                       lectureId === item._id.toString()
                         ? "bg-blue-50 border border-blue-200 text-blue-700"
                         : "hover:bg-gray-50 border"

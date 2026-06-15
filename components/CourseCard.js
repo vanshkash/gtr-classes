@@ -28,7 +28,7 @@ export default function CourseCard({ course }) {
           </div>
 
           {/* Title */}
-          <h3 className="mt-2 text-xl font-bold leading-7 text-gray-900 line-clamp-2">
+          <h3 className="mt-2 text-lg font-bold leading-7 text-gray-900 line-clamp-2">
             {course.title}
           </h3>
 

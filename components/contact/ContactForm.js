@@ -77,9 +77,9 @@ const handleChange = (e) => {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-slate-900">Send us a Message</h2>
+        <h2 className="text-2xl font-bold text-slate-900">Send us a Message</h2>
 
-        <p className="mt-2 text-slate-600">
+        <p className="mt-2 text-slate-600 text-sm sm:text-base">
           Fill out the form below and our team will get back to you as soon as
           possible.
         </p>

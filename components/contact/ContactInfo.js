@@ -43,7 +43,7 @@ export default function ContactInfo() {
           Get In Touch
         </p>
 
-        <h2 className="mt-3 text-3xl font-bold text-slate-900">
+        <h2 className="mt-3 text-3xl font-semibold text-slate-900">
           We're Here to Help
         </h2>
 

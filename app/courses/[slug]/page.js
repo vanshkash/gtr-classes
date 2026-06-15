@@ -34,7 +34,7 @@ export default async function CourseDetailPage({ params }) {
   const firstLecture = lectures[0] || null;
 
   return (
-    <div className="max-w-7xl mx-auto px-2 py-12">
+    <div className="max-w-7xl mx-auto px-2 py-8">
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-4 shadow-lg">
         <div className="grid lg:grid-cols-3 gap-4 items-center">
@@ -85,16 +85,16 @@ export default async function CourseDetailPage({ params }) {
 
           {/* Course Details */}
           <div className="lg:col-span-2">
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
+            <h1 className="text-2xl sm:text-3xl lg:text-3xl font-extrabold tracking-tight text-gray-900 leading-tight line-clamp-2">
               {course.title}
             </h1>
 
-            <p className="mt-5 text-lg text-gray-600 leading-8">
+            <p className="mt-3 sm:mt-5 text-sm sm:text-base lg:text-lg text-gray-600 leading-6 sm:leading-7 lg:leading-8 line-clamp-3 sm:line-clamp-none">
               {course.description}
             </p>
 
             {/* Stats */}
-            <div className="flex flex-wrap gap-8 mt-8 text-gray-700 font-medium">
+            <div className="flex flex-wrap gap-3 sm:gap-6 lg:gap-8 mt-5 sm:mt-8 text-sm sm:text-base text-gray-700 font-medium">
               <span>{lectures.length}+ Lectures</span>
 
               <span>60+ Hours</span>
@@ -118,7 +118,7 @@ export default async function CourseDetailPage({ params }) {
             {firstLecture ? (
               <Link
                 href={`/learn/${course.slug}/${firstLecture._id}`}
-                className="inline-flex items-center gap-2 mt-8 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold shadow-lg transition-all duration-300 hover:-translate-y-1"
+                className="inline-flex items-center gap-2  bg-blue-600 hover:bg-blue-700 text-white px-5 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold shadow-lg transition-all duration-300 hover:-translate-y-1 text-sm sm:text-base"
               >
                 Start Learning →
               </Link>
@@ -135,36 +135,36 @@ export default async function CourseDetailPage({ params }) {
       </div>
 
       {/* Content Section */}
-      <div className="grid lg:grid-cols-3 gap-8 mt-12">
+      <div className="grid lg:grid-cols-3 gap-8 mt-2 sm:mt-6 lg:mt-8">
         {/* Course Content */}
         <div className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6">Course Content</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
+            Course Content
+          </h2>
 
           {lectures.length > 0 ? (
-  lectures.map((lecture, index) => (
-    <Link
-      key={lecture._id}
-      href={`/learn/${course.slug}/${lecture._id}`}
-    >
-      <div className="flex justify-between items-center p-4 mb-3 rounded-xl border hover:border-blue-500 hover:bg-blue-50 transition-all cursor-pointer">
-        <span className="font-medium">
-          {index + 1}. {lecture.title}
-        </span>
+            lectures.map((lecture, index) => (
+              <Link
+                key={lecture._id}
+                href={`/learn/${course.slug}/${lecture._id}`}
+              >
+                <div className="flex justify-between items-center px-3 py-2.5 sm:p-4 mb-2 sm:mb-3 rounded-xl border hover:border-blue-500 hover:bg-blue-50 transition-all cursor-pointer">
+                  <span className="font-medium text-sm sm:text-base leading-snug">
+                    {index + 1}. {lecture.title}
+                  </span>
 
-        <span className="text-blue-600">▶</span>
-      </div>
-    </Link>
-  ))
-) : (
-  <div className="text-center py-12 text-gray-500">
-    <p className="text-lg font-medium">
-      No lectures available yet.
-    </p>
-    <p className="text-sm mt-2">
-      Lectures will be added soon. Stay tuned!
-    </p>
-  </div>
-)}
+                  <span className="text-blue-600 text-sm sm:text-base">▶</span>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <div className="text-center py-12 text-gray-500">
+              <p className="text-lg font-medium">No lectures available yet.</p>
+              <p className="text-sm mt-2">
+                Lectures will be added soon. Stay tuned!
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Premium Notes */}
