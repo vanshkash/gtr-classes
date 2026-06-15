@@ -48,19 +48,16 @@ export default function SuccessCard({
         <div className="flex items-start justify-between">
 
           <div>
-            <h3 className="text-lg font-bold text-slate-900">
-              {name}
-            </h3>
+            <h3 className="text-base sm:text-lg font-bold text-slate-900">
+  {name}
+</h3>
 
             <p className="mt-1 text-sm text-slate-600">
               Selected in {exam}
             </p>
           </div>
 
-          <Quote
-            size={18}
-            className="text-blue-500 opacity-50"
-          />
+         
         </div>
 
         <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
