@@ -9,19 +9,19 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Our Location",
-    value: "GTR Classes, Hapur, Uttar Pradesh",
+    value: "Anand Vishar, Hapur, Uttar Pradesh",
     color: "bg-blue-50 text-blue-600",
   },
   {
     icon: Phone,
     title: "Call Us",
-    value: "+91 98765 43210",
+    value: "+91 98973 35636",
     color: "bg-green-50 text-green-600",
   },
   {
     icon: Mail,
     title: "Email Us",
-    value: "info@gtrclasses.com",
+    value: "gtrclasses@gmail.com",
     color: "bg-orange-50 text-orange-600",
   },
   {

@@ -25,7 +25,7 @@ export default async function CoursesPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:gap-2 md:grid-cols-3 lg:grid-cols-4 px-4">
+      <div className="grid grid-cols-1 gap-6 lg:gap-2 md:grid-cols-3 lg:grid-cols-4 px-0">
         {serializedCourses.map((course) => (
           <CourseCard
             key={course._id}
