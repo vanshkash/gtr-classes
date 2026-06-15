@@ -8,7 +8,8 @@ const geist = Geist({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://www.gtrclasses.in"),
+  // metadataBase: new URL("https://www.gtrclasses.in"),
+  metadataBase: new URL("https://gtr-classes.vercel.app"),
 
   title: {
     default: "GTR Classes | TGT, PGT, KVS, DSSSB & Art Education",
@@ -47,7 +48,7 @@ export const metadata = {
     description:
       "Prepare for TGT, PGT, KVS and DSSSB exams with expert lectures, premium notes, and test series from GTR Classes.",
     // url: "https://www.gtrclasses.in",
-    url: "https://gtr-classes.vercel.app/",
+    url: "https://gtr-classes.vercel.app",
     siteName: "GTR Classes",
     images: [
       {
