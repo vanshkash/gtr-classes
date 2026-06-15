@@ -46,7 +46,8 @@ export const metadata = {
     title: "GTR Classes | TGT, PGT, KVS & DSSSB Preparation",
     description:
       "Prepare for TGT, PGT, KVS and DSSSB exams with expert lectures, premium notes, and test series from GTR Classes.",
-    url: "https://www.gtrclasses.in",
+    // url: "https://www.gtrclasses.in",
+    url: "https://gtr-classes.vercel.app/",
     siteName: "GTR Classes",
     images: [
       {
