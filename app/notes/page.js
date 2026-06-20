@@ -3,6 +3,54 @@ import dbConnect from "@/lib/dbConnect";
 import Note from "@/models/Note";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Notes & Test Series",
+
+  description:
+    "Access premium study notes, test series, practice materials and exam-focused resources for TGT, PGT, KVS, NVS, DSSSB and Art Education preparation.",
+
+  keywords: [
+    "Teaching Exam Notes",
+    "TGT Notes",
+    "PGT Notes",
+    "KVS Notes",
+    "NVS Notes",
+    "DSSSB Notes",
+    "Art Education Notes",
+    "Teaching Exam Test Series",
+    "Online Study Materials",
+    "GTR Classes Notes",
+    "GTR Classes Test Series",
+  ],
+
+  alternates: {
+    canonical: "/notes",
+  },
+
+  openGraph: {
+    title: "Notes & Test Series | GTR Classes",
+    description:
+      "Premium study notes and test series for TGT, PGT, KVS, NVS, DSSSB and Art Education preparation.",
+    url: "https://www.gtrclasses.in/notes",
+    images: [
+      {
+        url: "/og-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "GTR Classes Notes & Test Series",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Notes & Test Series | GTR Classes",
+    description:
+      "Access premium study notes and test series for teaching exam preparation.",
+    images: ["/og-image.webp"],
+  },
+};
+
 export default async function NotesPage() {
   await dbConnect();
 

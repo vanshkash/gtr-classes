@@ -21,12 +21,13 @@ export default async function EditCoursePage({ params }) {
 
       <EditCourseForm
         course={{
-          _id: course._id.toString(),
-          title: course.title,
-          description: course.description,
-          thumbnail: course.thumbnail,
-          price: course.price,
-        }}
+  _id: course._id.toString(),
+  title: course.title,
+  description: course.description,
+  thumbnail: course.thumbnail,
+  thumbnailPublicId: course.thumbnailPublicId,
+  price: course.price,
+}}
       />
     </div>
   );

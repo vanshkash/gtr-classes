@@ -54,15 +54,9 @@ export default function Footer() {
 
             <div className="mt-6 flex gap-3">
 
-              <a
-                href="#"
-                className="rounded-xl bg-slate-800 p-2.5 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-600"
-              >
-                <FaFacebookF size={15} />
-              </a>
 
               <a
-                href="#"
+                href="https://www.instagram.com/gtr_coachingcentre?igsh=bmQydDh3c2F6YmIy&utm_source=qr"
                 className="rounded-xl bg-slate-800 p-2.5 transition-all duration-300 hover:-translate-y-1 hover:bg-pink-600"
               >
                 <FaInstagram size={15} />
@@ -220,7 +214,7 @@ export default function Footer() {
                 href="/refund-policy"
                 className="transition hover:text-white"
               >
-                Refund & Cancellation Policy
+                Refund Policy
               </Link>
 
             </div>

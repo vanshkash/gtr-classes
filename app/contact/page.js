@@ -1,6 +1,44 @@
 import ContactForm from "@/components/contact/ContactForm";
 import ContactInfo from "@/components/contact/ContactInfo";
 
+export const metadata = {
+  title: "Contact Us",
+
+  description:
+    "Get in touch with GTR Classes for TGT, PGT, KVS, NVS, DSSSB and Art Education preparation. Contact us for course details, study materials, and guidance.",
+
+  keywords: [
+    "Contact GTR Classes",
+    "GTR Classes Contact",
+    "Teaching Exam Coaching Contact",
+    "TGT Preparation",
+    "PGT Preparation",
+    "KVS Coaching",
+    "NVS Coaching",
+    "DSSSB Preparation",
+    "Art Education Coaching",
+  ],
+
+  alternates: {
+    canonical: "/contact",
+  },
+
+  openGraph: {
+    title: "Contact Us | GTR Classes",
+    description:
+      "Contact GTR Classes for expert guidance on TGT, PGT, KVS, NVS, DSSSB and Art Education preparation.",
+    url: "https://www.gtrclasses.in/contact",
+    images: [
+      {
+        url: "/og-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "Contact GTR Classes",
+      },
+    ],
+  },
+};
+
 export default function ContactPage() {
   return (
     <section className="bg-slate-50 py-16">

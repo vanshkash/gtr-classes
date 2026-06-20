@@ -1,79 +1,137 @@
 import Image from "next/image";
 import Link from "next/link";
 import TypingText from "./TypingText";
-
+import HeroSlider from "./HeroSlider";
+import { GraduationCap, BookOpen, PlayCircle, Trophy } from "lucide-react";
 
 export default function Hero() {
-  return (
-    <section className="relative overflow-hidden bg-white pt-4">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid min-h-[560px] lg:grid-cols-2 items-center gap-8">
-          {/* LEFT CONTENT */}
-          <div className="relative z-10">
-            <span className="inline-flex rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600">
-              Welcome to GTR Classes
-            </span>
+  const banners = [
+    {
+      desktop: "/banners/desktop-banner1.webp",
+      mobile: "/banners/mobile1.webp",
+    },
+    {
+      desktop: "/banners/desktop-banner2222.webp",
+      mobile: "/banners/mobile2.webp",
+    },
+    {
+      desktop: "/banners/desktop3.webp",
+      mobile: "/banners/mobile3.webp",
+    },
+  ];
 
-            <h1 className="mt-6 text-4xl sm:text-4xl lg:text-6xl font-bold leading-tight text-slate-900">
+  return (
+    <section className="bg-white">
+      {/* Banner Slider */}
+
+      <HeroSlider banners={banners} />
+
+      {/* Result Bar */}
+
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+        <div className="mx-auto flex max-w-7xl items-center justify-evenly px-6 md:py-2 py-2 text-sm font-medium md:justify-center md:gap-8 md:text-base">
+          <span className="flex items-center gap-2">
+            <Trophy className="h-5 w-5" />
+            <span className="hidden md:inline">200+ Selections</span>
+          </span>
+
+          <span className="flex items-center gap-2">
+            <BookOpen className="h-5 w-5" />
+            <span className="hidden md:inline">Premium Notes</span>
+          </span>
+
+          <span className="flex items-center gap-2">
+            <PlayCircle className="h-5 w-5" />
+            <span className="hidden md:inline">Recorded Lectures</span>
+          </span>
+
+          <span className="flex items-center gap-2">
+            <GraduationCap className="h-5 w-5" />
+            <span className="hidden md:inline">Trusted by Aspirants</span>
+          </span>
+        </div>
+      </div>
+
+      {/* Hero Content */}
+
+      <div className="mx-auto max-w-7xl px-4 py-3 md:py-6">
+        <div className="flex flex-col items-center gap-10 md:flex-row md:justify-between">
+          {/* Left Content */}
+
+          <div className="max-w-3xl">
+            <h1 className="mt-6 text-4xl sm:text-4xl lg:text-5xl font-bold leading-tight text-slate-900">
               Your <span className="text-blue-600">Success</span>
               <br />
               <TypingText />
             </h1>
 
-            <p className="mt-4 max-w-xl text-base sm:text-lg text-slate-600">
+            <p className="mt-6 max-w-2xl sm:text-lg text-base leading-relaxed text-slate-600">
               Best Online Platform for TGT, PGT, DSSSB, UGC NET and other
               teaching exams preparation.
             </p>
 
-            <div className="mt-6  flex flex-wrap gap-4">
+            {/* CTA */}
+
+            <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/courses"
-                className="rounded-xl bg-blue-600 px-5 py-3 sm:px-8 sm:py-4 font-medium text-white transition hover:bg-blue-700"
+                className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm md:px-8 md:py-4 md:text-base font-semibold text-white shadow-lg transition hover:scale-105 hover:bg-blue-700"
               >
-                Explore Courses
+                Explore Courses →
               </Link>
 
               <Link
                 href="/notes"
-                className="rounded-xl border border-slate-300 px-5 py-3 sm:px-8 sm:py-4 font-medium text-slate-700 transition hover:bg-slate-50"
+                className="rounded-xl border border-slate-300 px-5 py-2.5 text-sm md:px-8 md:py-4 md:text-base font-semibold text-slate-700 transition hover:bg-slate-50"
               >
                 View Notes
               </Link>
             </div>
+
+            {/* Small Stats */}
+
+            <div className="mt-8 flex w-full justify-evenly text-center text-xs md:gap-8 md:text-2xl">
+              <div>
+                <p className="text-2xl font-bold text-blue-600">200+</p>
+                <p className="text-slate-600">Selections</p>
+              </div>
+
+              <div>
+                <p className="text-2xl font-bold text-blue-600">100+</p>
+                <p className="text-slate-600">Lectures</p>
+              </div>
+
+              <div>
+                <p className="text-2xl font-bold text-blue-600">500+</p>
+                <p className="text-slate-600">Students</p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-blue-600">25+</p>
+                <p className="text-slate-600">Years Experience</p>
+              </div>
+            </div>
           </div>
 
-          {/* RIGHT IMAGE */}
-          <div className="relative flex justify-center">
-            {/* Main Circle */}
-            <div className="absolute h-[500px] w-[500px] rounded-full bg-blue-50" />
+          {/* Right Image */}
 
-            {/* Dots */}
-            <div className="absolute right-12 top-16 grid grid-cols-4 gap-2">
-              {[...Array(16)].map((_, i) => (
-                <span key={i} className="h-2 w-2 rounded-full bg-blue-300" />
-              ))}
-            </div>
+          <div className="relative hidden md:flex items-center justify-center">
+            {/* Background Circle */}
+            <div className="absolute h-[400px] w-[400px] rounded-full bg-blue-50 mr-30"></div>
 
-            {/* Blue Circle */}
-            <div className="absolute left-10 top-24 h-8 w-8 rounded-full bg-blue-600" />
+            {/* Decorative Dot */}
+            <div className="absolute left-0 top-20 h-8 w-8 rounded-full bg-blue-600"></div>
 
-            {/* Yellow Circle */}
-            <div className="absolute bottom-40 left-0 h-10 w-10 rounded-full bg-yellow-400" />
-
-            {/* Triangle */}
-            <div className="absolute right-10 top-1/2 h-0 w-0 border-l-[18px] border-l-transparent border-r-[18px] border-r-transparent border-b-[30px] border-b-blue-500" />
-
-            {/* Yellow Shape */}
-            <div className="absolute bottom-16 right-0 h-40 w-72 rounded-l-full bg-yellow-300 opacity-70" />
+            {/* Decorative Dot */}
+            <div className="absolute left-60 bottom-32 h-10 w-10 rounded-full bg-yellow-400"></div>
 
             {/* Student Image */}
             <Image
-              src="/hero1.png"
-              alt="Student"
-              width={400}
-              height={500}
+              src="/hero1.webp"
+              alt="GTR Classes Student"
+              width={280}
+              height={280}
               priority
-              className="relative z-10 object-contain -mt-10"
+              className="relative z-10 h-auto w-[260px] object-contain mr-25"
             />
           </div>
         </div>

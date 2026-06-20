@@ -3,6 +3,55 @@ import CourseCard from "@/components/CourseCard";
 import dbConnect from "@/lib/dbConnect";
 import Course from "@/models/Course";
 
+export const metadata = {
+  title: "Our Courses ",
+
+  description:
+    "Explore expert-led courses for TGT, PGT, KVS, NVS, DSSSB and Art Education preparation. Learn with structured video lectures, study notes and exam-focused content.",
+
+  keywords: [
+    "Teaching Exam Courses",
+    "TGT Courses",
+    "PGT Courses",
+    "KVS Preparation",
+    "NVS Preparation",
+    "DSSSB Courses",
+    "Art Education Courses",
+    "Online Teaching Courses",
+    "GTR Classes Courses",
+  ],
+
+  alternates: {
+    canonical: "/courses",
+  },
+
+  openGraph: {
+    title: "Teaching Exam Courses | GTR Classes",
+    description:
+      "Explore expert-led courses for TGT, PGT, KVS, NVS, DSSSB and Art Education preparation.",
+    url: "https://www.gtrclasses.in/courses",
+    siteName: "GTR Classes",
+    images: [
+      {
+        url: "/og-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "GTR Classes Courses",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Teaching Exam Courses | GTR Classes",
+    description:
+      "Expert-led courses for TGT, PGT, KVS, NVS, DSSSB and Art Education preparation.",
+    images: ["/og-image.webp"],
+  },
+};
+
 export default async function CoursesPage() {
   await dbConnect();
 

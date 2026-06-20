@@ -8,19 +8,18 @@ const geist = Geist({
 });
 
 export const metadata = {
-  // metadataBase: new URL("https://www.gtrclasses.in"),
-  metadataBase: new URL("https://gtr-classes.vercel.app"),
+  metadataBase: new URL("https://www.gtrclasses.in"),
 
   title: {
-    default: "GTR Classes | TGT, PGT, KVS, DSSSB & Art Education",
+    default: "GTR Classes | Trusted Online Platform for TGT PGT & DSSSB ARt Preparation",
     template: "%s | GTR Classes",
   },
 
   description:
-    "Join GTR Classes for TGT, PGT, KVS, DSSSB and Art Education preparation. Get expert video lectures, premium notes, test series, and exam-oriented study materials.",
+    "Join GTR Classes for TGT PGT KVS DSSSB and Art Education preparation. Get free expert video lectures, premium notes, test series, and exam-oriented study materials.",
 
   keywords: [
-    "GTR Classes",
+    "GTR Classes Hapur",
     "TGT Art",
     "PGT Art",
     "KVS Art",
@@ -32,7 +31,7 @@ export const metadata = {
     "Test Series",
     "Art Teacher",
     "Teaching Courses",
-    "GTR Classes Hapur",
+    "GTR Classes",
   ],
 
   authors: [{ name: "GTR Classes" }],
@@ -47,12 +46,11 @@ export const metadata = {
     title: "GTR Classes | TGT, PGT, KVS & DSSSB Preparation",
     description:
       "Prepare for TGT, PGT, KVS and DSSSB exams with expert lectures, premium notes, and test series from GTR Classes.",
-    // url: "https://www.gtrclasses.in",
-    url: "https://gtr-classes.vercel.app",
+    url: "https://www.gtrclasses.in",
     siteName: "GTR Classes",
     images: [
       {
-        url: "/og-image.webp", // public/og-image.jpg
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "GTR Classes",

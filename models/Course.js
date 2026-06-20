@@ -6,14 +6,14 @@ const CourseSchema = new mongoose.Schema(
     slug: String,
     description: String,
     thumbnail: String,
+    thumbnailPublicId: String,
     price: Number,
     isFree: Boolean,
     features: [String],
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-export default mongoose.models.Course ||
-  mongoose.model("Course", CourseSchema);
+export default mongoose.models.Course || mongoose.model("Course", CourseSchema);

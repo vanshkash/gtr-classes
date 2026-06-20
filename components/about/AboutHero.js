@@ -8,7 +8,7 @@ import {
 
 export default function AboutHero() {
   return (
-    <section className="relative overflow-hidden pt-24 pb-20">
+    <section className="relative overflow-hidden pt-6 pb-20">
       <div className="max-w-7xl mx-auto px-4">
 
         {/* Hero Grid */}

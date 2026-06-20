@@ -6,6 +6,7 @@ import AboutPage from "./about/page";
 import SuccessStoriesPage from "./success-stories/page";
 import ContactPage from "./contact/page";
 import NotesPage from "@/app/notes/page";
+import SuccessGrid from "@/components/success-stories/SuccessGrid";
 
 export default function HomePage(){
   return (
@@ -15,7 +16,7 @@ export default function HomePage(){
       <CoursePage />
       <NotesPage />
       <AboutPage/>
-      <SuccessStoriesPage />
+      <SuccessGrid limit={10} />
       <ContactPage />
     </div>
   )
