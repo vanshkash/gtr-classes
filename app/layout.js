@@ -11,7 +11,7 @@ export const metadata = {
   metadataBase: new URL("https://www.gtrclasses.in"),
 
   title: {
-    default: "GTR Classes | Trusted Online Platform for TGT PGT & DSSSB ARt Preparation",
+    default: "GTR Classes | Trusted Online Platform for TGT PGT & DSSSB ART Preparation",
     template: "%s | GTR Classes",
   },
 
