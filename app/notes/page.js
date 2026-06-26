@@ -1,7 +1,9 @@
+// app/notes/page.js
 export const dynamic = "force-dynamic";
 import dbConnect from "@/lib/dbConnect";
 import Note from "@/models/Note";
 import Link from "next/link";
+import BuyButton from "@/components/notes/BuyButton";
 
 export const metadata = {
   title: "Notes & Test Series",
@@ -121,9 +123,11 @@ export default async function NotesPage() {
                 Download
               </a>
             ) : (
-              <button className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
-                Buy Now
-              </button>
+              <BuyButton
+  noteId={note._id.toString()}
+  price={note.price}
+  title={note.title}
+/>
             )}
           </div>
         </div>

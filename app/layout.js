@@ -2,6 +2,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/layout/Footer";
+import Script from "next/script";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -94,6 +95,10 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
+        <Script
+  src="https://checkout.razorpay.com/v1/checkout.js"
+  strategy="lazyOnload"
+/>
       </body>
     </html>
   );

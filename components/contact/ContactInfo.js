@@ -9,7 +9,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Our Location",
-    value: "Anand Vishar, Hapur, Uttar Pradesh",
+    value: "Anand Vihar, Hapur, Uttar Pradesh",
     color: "bg-blue-50 text-blue-600",
   },
   {
@@ -27,7 +27,7 @@ const contactInfo = [
   {
     icon: Clock,
     title: "Working Hours",
-    value: "Mon - Sun • 9:00 AM - 7:00 PM",
+    value: "Mon - Sat • 9:00 AM - 7:00 PM",
     color: "bg-purple-50 text-purple-600",
   },
 ];
