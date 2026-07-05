@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/layout/Footer";
 import Script from "next/script";
+import { Toaster } from "react-hot-toast";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -12,7 +13,8 @@ export const metadata = {
   metadataBase: new URL("https://www.gtrclasses.in"),
 
   title: {
-    default: "GTR Classes | Trusted Online Platform for TGT PGT & DSSSB ART Preparation",
+    default:
+      "GTR Classes | Trusted Online Platform for TGT PGT & DSSSB ART Preparation",
     template: "%s | GTR Classes",
   },
 
@@ -93,12 +95,21 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geist.className} min-h-screen`}>
         <Navbar />
+        <Toaster
+    position="top-right"
+    containerStyle={{
+    top: "80px",
+  }}
+    toastOptions={{
+      duration: 5000,
+    }}
+  />
         {children}
         <Footer />
         <Script
-  src="https://checkout.razorpay.com/v1/checkout.js"
-  strategy="lazyOnload"
-/>
+          src="https://checkout.razorpay.com/v1/checkout.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

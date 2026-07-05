@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 
 export function middleware(req) {
   const token = req.cookies.get("token")?.value;
+  console.log("MIDDLEWARE TOKEN:", token);
 
   const protectedRoutes = ["/dashboard"];
 
@@ -19,11 +20,15 @@ export function middleware(req) {
   }
 
   try {
-    jwt.verify(token, process.env.JWT_SECRET);
-    return NextResponse.next();
-  } catch {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  console.log("JWT VERIFIED:", decoded);
+
+  return NextResponse.next();
+} catch (err) {
+  console.log("JWT ERROR:", err.message);
+
+  return NextResponse.redirect(new URL("/login", req.url));
+}
 }
 
 export const config = {

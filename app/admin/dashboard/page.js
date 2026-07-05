@@ -27,7 +27,7 @@ export default async function DashboardPage() {
     (item) => item.type === "test-series"
   ).length;
 
-  const totalStudents = 0; // Future
+  // const totalStudents = 0; // Future
 
   return (
     <div className="space-y-8">
@@ -44,7 +44,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
 
         {/* Courses */}
         <div className="bg-white border rounded-2xl p-6 shadow-sm">
@@ -90,7 +90,7 @@ export default async function DashboardPage() {
           </h2>
         </div>
 
-        {/* Students */}
+        {/* Students
         <div className="bg-white border rounded-2xl p-6 shadow-sm">
           <p className="text-sm text-gray-500">
             Students
@@ -99,7 +99,7 @@ export default async function DashboardPage() {
           <h2 className="text-4xl font-bold mt-2">
             {totalStudents}
           </h2>
-        </div>
+        </div> */}
 
       </div>
 

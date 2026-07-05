@@ -15,6 +15,7 @@ export default async function PreviewPage({ params }) {
 
   return (
     <ClientPreview
+  noteId={note._id.toString()}
   title={note.title}
   pdfUrl={note.pdfUrl}
   price={note.price}

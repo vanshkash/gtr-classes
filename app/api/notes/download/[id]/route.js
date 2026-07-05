@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import dbConnect from "@/lib/dbConnect";
 import Note from "@/models/Note";
+import Purchase from "@/models/Purchase";
+import getCurrentUser from "@/lib/getCurrentUser";
 
 export async function GET(req, { params }) {
   try {
@@ -9,33 +11,55 @@ export async function GET(req, { params }) {
 
     const { id } = await params;
 
-    const token = req.nextUrl.searchParams.get("token");
+const token = req.nextUrl.searchParams.get("token");
 
-    if (!token) {
-      return NextResponse.json(
-        { success: false, message: "Unauthorized" },
-        { status: 401 }
-      );
-    }
+if (token) {
+  // Instant download after payment
+  let decoded;
 
-    let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
+  } catch {
+    return NextResponse.json(
+      { success: false, message: "Token Expired" },
+      { status: 401 }
+    );
+  }
 
-    try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET);
-    } catch {
-      return NextResponse.json(
-        { success: false, message: "Token Expired" },
-        { status: 401 }
-      );
-    }
+  if (decoded.noteId !== id) {
+    return NextResponse.json(
+      { success: false, message: "Invalid Token" },
+      { status: 401 }
+    );
+  }
 
-    if (decoded.noteId !== id) {
-      return NextResponse.json(
-        { success: false, message: "Invalid Token" },
-        { status: 401 }
-      );
-    }
+} else {
+  // Download from Dashboard
+  const user = await getCurrentUser(req);
 
+  if (!user) {
+    return NextResponse.json(
+      { success: false, message: "Unauthorized" },
+      { status: 401 }
+    );
+  }
+
+  const purchase = await Purchase.findOne({
+    userId: user._id,
+    noteId: id,
+    status: "paid",
+  });
+
+  if (!purchase) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Purchase not found",
+      },
+      { status: 403 }
+    );
+  }
+}
     const note = await Note.findById(id);
 
     if (!note) {

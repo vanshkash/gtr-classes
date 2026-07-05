@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/User";
+import jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
+import toast from "react-hot-toast"
 
 export async function POST(req) {
   try {
@@ -9,6 +12,7 @@ export async function POST(req) {
 
     const { name, email, password } = await req.json();
 
+    // Validation
     if (!name || !email || !password) {
       return NextResponse.json(
         {
@@ -19,9 +23,8 @@ export async function POST(req) {
       );
     }
 
-    const existingUser = await User.findOne({
-      email: email.toLowerCase(),
-    });
+    // Check existing user
+    const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       return NextResponse.json(
@@ -33,13 +36,36 @@ export async function POST(req) {
       );
     }
 
+    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await User.create({
-      name,
-      email: email.toLowerCase(),
-      password: hashedPassword,
-    });
+    // Create user
+   const user = await User.create({
+  name,
+  email,
+  password: hashedPassword,
+});
+
+const token = jwt.sign(
+  {
+    userId: user._id,
+    role: user.role,
+  },
+  process.env.JWT_SECRET,
+  {
+    expiresIn: "7d",
+  }
+);
+
+const cookieStore = await cookies();
+
+cookieStore.set("token", token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "lax",
+  path: "/",
+  maxAge: 60 * 60 * 24 * 7, // 7 days
+});
 
     return NextResponse.json({
       success: true,

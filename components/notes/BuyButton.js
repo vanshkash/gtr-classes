@@ -1,13 +1,38 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const key = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
-export default function BuyButton({ noteId, price, title }) {
-  const [verified, setVerified] = useState(false);
-  const [downloadToken, setDownloadToken] = useState("");
+export default function BuyButton({
+  noteId,
+  price,
+  title,
+  text = "Buy Now",
+  className = "",
+}) {
+  const router = useRouter();
 
   const handleBuy = async () => {
-    try {
+  try {
+    const meRes = await fetch("/api/auth/me");
+    const meData = await meRes.json();
+
+    if (!meData.success) {
+  toast.error("Please login to purchase notes.");
+
+  const currentUrl =
+    window.location.pathname + window.location.search;
+
+  sessionStorage.setItem("scrollY", window.scrollY);
+  sessionStorage.setItem("redirect", currentUrl);
+
+  router.push(
+    `/login?redirect=${encodeURIComponent(currentUrl)}`
+  );
+
+  return;
+}
       const res = await fetch("/api/payment/create-order", {
         method: "POST",
         headers: {
@@ -22,7 +47,7 @@ export default function BuyButton({ noteId, price, title }) {
       const data = await res.json();
 
       if (!data.success) {
-        alert("Failed to create order.");
+        toast.error("Failed to create order.");
         return;
       }
 
@@ -35,7 +60,6 @@ export default function BuyButton({ noteId, price, title }) {
         order_id: data.order.id,
 
         handler: async function (response) {
-
           try {
             const verifyRes = await fetch("/api/payment/verify", {
               method: "POST",
@@ -52,14 +76,16 @@ export default function BuyButton({ noteId, price, title }) {
             const verifyData = await verifyRes.json();
 
             if (verifyData.success) {
-              setVerified(true);
-              setDownloadToken(verifyData.downloadToken);
+              toast.success("Payment Successful!");
+
+              router.push("/dashboard/purchased-notes");
+              router.refresh();
             } else {
-              alert("Payment Verification Failed");
+              toast.error("Payment Verification Failed");
             }
           } catch (error) {
             console.error(error);
-            alert("Something went wrong.");
+            toast.error("Something went wrong.");
           }
         },
 
@@ -69,7 +95,7 @@ export default function BuyButton({ noteId, price, title }) {
       };
 
       if (!window.Razorpay) {
-        alert("Razorpay SDK failed to load.");
+        toast.error("Razorpay SDK failed to load.");
         return;
       }
 
@@ -80,27 +106,14 @@ export default function BuyButton({ noteId, price, title }) {
     }
   };
 
-  const handleDownload = () => {
-    window.location.href = `/api/notes/download/${noteId}?token=${downloadToken}`;
-  };
-
   return (
     <>
-      {!verified ? (
-        <button
-          onClick={handleBuy}
-          className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-        >
-          Buy Now
-        </button>
-      ) : (
-        <button
-          onClick={handleDownload}
-          className="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
-        >
-          Download Notes
-        </button>
-      )}
+      <button
+  onClick={handleBuy}
+  className={`w-full rounded-xl bg-blue-600 py-2 font-medium text-white transition hover:bg-blue-700 ${className}`}
+>
+  {text}
+</button>
     </>
   );
 }

@@ -3,12 +3,15 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { CheckCircle, ShieldCheck, ArrowLeft } from "lucide-react";
+import BuyButton from "@/components/notes/BuyButton";
+
 const PDFViewer = dynamic(() => import("./PDFViewer"), {
   ssr: false,
   loading: () => <div className="text-center py-20">Loading Preview...</div>,
 });
 
 export default function ClientPreview({
+  noteId,
   title,
   pdfUrl,
   price,
@@ -68,16 +71,23 @@ export default function ClientPreview({
                 unlock complete access.
               </p>
 
-              <button className="w-full mt-6 bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition font-medium">
-                Buy Full {type === "test-series" ? "Test Series" : "Notes"}
-              </button>
+              <div className="mt-6 flex gap-3">
+  <div className="flex-1">
+    <BuyButton
+      noteId={noteId}
+      price={price}
+      title={title}
+      className="w-full"
+    />
+  </div>
 
-              <Link
-                href="/notes"
-                className="block w-full mt-3 text-center border py-3 rounded-xl hover:bg-gray-50 transition"
-              >
-                Back to {type === "test-series" ? "Test Series" : "Notes"}
-              </Link>
+  <Link
+    href="/notes"
+    className="flex-1 flex items-center justify-center rounded-xl border py-2 font-medium transition hover:bg-gray-50"
+  >
+    Back to {type === "test-series" ? "Test Series" : "Notes"}
+  </Link>
+</div>
             </div>
 
             <div className="mt-6 rounded-2xl bg-green-50 border border-green-200 p-4 flex gap-3">

@@ -28,7 +28,7 @@ export default function HeroSlider({ banners }) {
                 src={banner.mobile}
                 alt={`GTR Classes Banner ${index + 1}`}
                 width={1080}
-                height={1350}
+                height={526}
                 priority={index === 0}
                 className="w-full h-auto"
               />

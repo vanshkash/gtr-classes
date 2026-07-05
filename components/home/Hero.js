@@ -62,7 +62,9 @@ export default function Hero() {
             <h1 className="mt-6 text-4xl sm:text-4xl lg:text-5xl font-bold leading-tight text-slate-900">
               Your <span className="text-blue-600">Success</span>
               <br />
-              <TypingText />
+              <span className="block min-h-[45px] md:min-h-[60px]">
+                <TypingText />
+              </span>
             </h1>
 
             <p className="mt-6 max-w-2xl sm:text-lg text-base leading-relaxed text-slate-600">

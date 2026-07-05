@@ -3,10 +3,23 @@ import crypto from "crypto";
 import dbConnect from "@/lib/dbConnect";
 import Purchase from "@/models/Purchase";
 import jwt from "jsonwebtoken";
+import getCurrentUser from "@/lib/getCurrentUser";
 
 export async function POST(req) {
   try {
     await dbConnect();
+    const user = await getCurrentUser(req);
+
+if (!user) {
+  return NextResponse.json(
+    {
+      success: false,
+      message: "Please login first.",
+    },
+    { status: 401 }
+  );
+}
+
     const {
       razorpay_order_id,
       razorpay_payment_id,
@@ -46,13 +59,14 @@ if (existingPurchase) {
 }
 
     const purchase = await Purchase.create({
-      noteId,
-      razorpayOrderId: razorpay_order_id,
-      razorpayPaymentId: razorpay_payment_id,
-      razorpaySignature: razorpay_signature,
-      amount,
-      status: "paid",
-    });
+  userId: user._id,
+  noteId,
+  razorpayOrderId: razorpay_order_id,
+  razorpayPaymentId: razorpay_payment_id,
+  razorpaySignature: razorpay_signature,
+  amount,
+  status: "paid",
+});
 
     const downloadToken = jwt.sign(
   {
