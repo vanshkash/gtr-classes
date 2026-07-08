@@ -7,7 +7,6 @@ import {
 } from "lucide-react";
 
 import {
-  FaFacebookF,
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
@@ -223,7 +222,14 @@ export default function Footer() {
             <p className="text-center lg:text-right">
               Designed & Developed by{" "}
               <span className="font-medium text-slate-300">
-                GTR Team
+                <a
+                  href="https://vanshkash.github.io/Portfolio-Website"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white"
+                >
+                  Vansh Kashyap
+                </a>
               </span>
             </p>
 

@@ -1,3 +1,4 @@
+import { createAuthToken } from "@/lib/createAuthToken";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -44,16 +45,8 @@ export async function POST(req) {
       );
     }
 
-    const token = jwt.sign(
-      {
-        userId: user._id,
-        role: user.role,
-      },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "7d",
-      }
-    );
+
+const token = createAuthToken(user);
 
     const response = NextResponse.json({
       success: true,

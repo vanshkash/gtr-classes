@@ -11,7 +11,7 @@ export default function AddNotePage() {
   const [pdf, setPdf] = useState(null);
   const [isPublished, setIsPublished] = useState(true);
   const [courses, setCourses] = useState([]);
-const [type, setType] = useState("notes");
+  const [type, setType] = useState("notes");
 
   const router = useRouter();
 
@@ -142,20 +142,18 @@ const [type, setType] = useState("notes");
           </div>
 
           {/* Material Type */}
-<div>
-  <label className="block mb-2 font-medium">
-    Material Type
-  </label>
+          <div>
+            <label className="block mb-2 font-medium">Material Type</label>
 
-  <select
-    value={type}
-    onChange={(e) => setType(e.target.value)}
-    className="w-full border rounded-lg px-4 py-2"
-  >
-    <option value="notes">📚 Notes</option>
-    <option value="test-series">📝 Test Series</option>
-  </select>
-</div>
+            <select
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              className="w-full border rounded-lg px-4 py-2"
+            >
+              <option value="notes">📚 Notes</option>
+              <option value="test-series">📝 Test Series</option>
+            </select>
+          </div>
 
           {/* PDF Upload */}
           <div>
@@ -188,8 +186,8 @@ const [type, setType] = useState("notes");
             className="bg-black text-white px-6 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading
-  ? "Publishing..."
-  : `Publish ${type === "notes" ? "Note" : "Test Series"}`}
+              ? "Publishing..."
+              : `Publish ${type === "notes" ? "Note" : "Test Series"}`}
           </button>
         </form>
       </div>
