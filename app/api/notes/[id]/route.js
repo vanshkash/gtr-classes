@@ -3,8 +3,7 @@ import dbConnect from "@/lib/dbConnect";
 import Note from "@/models/Note";
 import mongoose from "mongoose";
 import cloudinary from "@/lib/cloudinary";
-import { verifyAdmin } from "@/lib/verifyAdmin";
-import { NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin"
 
 export async function GET(req, { params }) {
   try {
