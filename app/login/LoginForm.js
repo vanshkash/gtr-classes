@@ -4,6 +4,31 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 25,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: "easeOut",
+    },
+  },
+};
 
 export default function LoginPage() {
   const router = useRouter();
@@ -60,7 +85,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <motion.div 
+    initial={{ opacity: 0 }}
+  animate={{ opacity: 2 }}
+    className="min-h-screen flex items-center justify-center px-4">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-md rounded-2xl border p-8 shadow-sm"
@@ -115,6 +143,6 @@ export default function LoginPage() {
           Forgot Password?
         </Link>
       </form>
-    </div>
+    </motion.div>
   );
 }

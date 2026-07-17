@@ -38,8 +38,8 @@ export default function HeroSlider({ banners }) {
               <Image
                 src={banner.desktop}
                 alt={`GTR Classes Banner ${index + 1}`}
-                width={1920}
-                height={500}
+                width={1983}
+                height={495}
                 priority={index === 0}
                 className="w-full h-auto"
               />

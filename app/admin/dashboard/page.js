@@ -3,8 +3,16 @@ import Course from "@/models/Course";
 import Lecture from "@/models/Lecture";
 import Note from "@/models/Note";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export default async function DashboardPage() {
+  const isAdmin = await verifyAdmin();
+
+if (!isAdmin) {
+  redirect("/admin-login");
+}
+
   await dbConnect();
 
   const courses = await Course.find()

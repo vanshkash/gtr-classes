@@ -1,6 +1,7 @@
 import CTA from "@/components/success-stories/CTA";
 import Hero from "@/components/success-stories/Hero";
 import SuccessGrid from "@/components/success-stories/SuccessGrid";
+import Animate from "@/components/animations/Animate";
 
 export const metadata = {
   title: "Success Stories",
@@ -52,9 +53,11 @@ export const metadata = {
 export default function SuccessStoriesPage() {
   return (
     <main>
-      <Hero />
-      <SuccessGrid  />
-      <CTA />
+      <Animate>
+        <Hero />
+        <SuccessGrid  />
+        <CTA />
+      </Animate>
     </main>
   );
 }

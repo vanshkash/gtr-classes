@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 import CourseCard from "@/components/CourseCard";
 import dbConnect from "@/lib/dbConnect";
 import Course from "@/models/Course";
+import Animate from "@/components/animations/Animate";
 
 export const metadata = {
   title: "Our Courses ",
@@ -62,6 +63,8 @@ export default async function CoursesPage() {
   );
 
   return (
+    
+    <Animate>
     <section className="mx-auto max-w-7xl px-6 lg:px-2 py-16">
       <div className="mb-10">
         <h1 className="text-4xl font-bold">
@@ -83,5 +86,6 @@ export default async function CoursesPage() {
         ))}
       </div>
     </section>
+    </Animate>
   );
 }

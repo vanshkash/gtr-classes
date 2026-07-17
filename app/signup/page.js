@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -199,7 +200,10 @@ if (savedSignup) {
 };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <motion.div 
+    initial={{ opacity: 0 }}
+  animate={{ opacity: 2 }}
+    className="min-h-screen flex items-center justify-center px-4">
       {!showOTP && (
         <form
           onSubmit={handleSubmit}
@@ -317,6 +321,6 @@ if (savedSignup) {
           </button>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

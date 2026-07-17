@@ -1,6 +1,7 @@
 import dbConnect from "@/lib/dbConnect";
 import Note from "@/models/Note";
 import ClientPreview from "./ClientPreview";
+import Animate from "@/components/animations/Animate";
 
 export default async function PreviewPage({ params }) {
   await dbConnect();
@@ -14,6 +15,7 @@ export default async function PreviewPage({ params }) {
   }
 
   return (
+    <Animate>
     <ClientPreview
   noteId={note._id.toString()}
   title={note.title}
@@ -22,5 +24,6 @@ export default async function PreviewPage({ params }) {
   course={note.course?.title}
   type={note.type}
 />
+</Animate>
   );
 }

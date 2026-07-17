@@ -40,7 +40,7 @@ export default function ClientPreview({
               {type === "test-series" ? "Test Series Preview" : "Notes Preview"}
             </h2>
 
-            <span className="text-sm text-gray-500">First 4 Pages Only</span>
+            <span className="text-sm text-gray-500">First Page Only</span>
           </div>
 
           {/* PDF */}

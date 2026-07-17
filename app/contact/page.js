@@ -1,5 +1,6 @@
 import ContactForm from "@/components/contact/ContactForm";
 import ContactInfo from "@/components/contact/ContactInfo";
+import Animate from "@/components/animations/Animate";
 
 export const metadata = {
   title: "Contact Us",
@@ -41,6 +42,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
+    <Animate>
     <section className="bg-slate-50 py-16">
       <div className="mx-auto max-w-7xl px-6">
 
@@ -66,5 +68,6 @@ export default function ContactPage() {
 
       </div>
     </section>
+    </Animate>
   );
 }

@@ -4,6 +4,7 @@ import Lecture from "@/models/Lecture";
 import Link from "next/link";
 import Note from "@/models/Note";
 import { Play } from "lucide-react";
+import Animate from "@/components/animations/Animate";
 
 export default async function CourseDetailPage({ params }) {
   const { slug } = await params;
@@ -34,6 +35,7 @@ export default async function CourseDetailPage({ params }) {
   const firstLecture = lectures[0] || null;
 
   return (
+    <Animate>
     <div className="max-w-7xl mx-auto px-2 py-8">
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-4 shadow-lg">
@@ -212,5 +214,6 @@ export default async function CourseDetailPage({ params }) {
         </div>
       </div>
     </div>
+    </Animate>
   );
 }

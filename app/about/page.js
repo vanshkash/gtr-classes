@@ -2,6 +2,7 @@ import AboutHero from "@/components/about/AboutHero";
 import MissionVision from "@/components/about/MissionVision";
 import WhyChooseUs from "@/components/about/WhyChooseUs";
 import FounderSection from "@/components/about/FounderSection";
+import Animate from "@/components/animations/Animate";
 
 export const metadata = {
   title: "About Us",
@@ -53,10 +54,12 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
+      <Animate>
       <AboutHero />
       <MissionVision />
         <WhyChooseUs />
         <FounderSection />
+      </Animate>
     </>
   );
 }

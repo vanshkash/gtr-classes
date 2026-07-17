@@ -4,6 +4,7 @@ import dbConnect from "@/lib/dbConnect";
 import Note from "@/models/Note";
 import Link from "next/link";
 import BuyButton from "@/components/notes/BuyButton";
+import Animate from "@/components/animations/Animate";
 
 export const metadata = {
   title: "Notes & Test Series",
@@ -136,6 +137,7 @@ export default async function NotesPage() {
   );
 
   return (
+      <Animate> 
     <section className="max-w-7xl mx-auto px-4 py-10">
       {/* Heading */}
       <div className="mb-10">
@@ -170,5 +172,6 @@ export default async function NotesPage() {
         renderCards(testSeries)
       )}
     </section>
+    </Animate>
   );
 }

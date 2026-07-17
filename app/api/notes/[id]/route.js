@@ -3,6 +3,8 @@ import dbConnect from "@/lib/dbConnect";
 import Note from "@/models/Note";
 import mongoose from "mongoose";
 import cloudinary from "@/lib/cloudinary";
+import { verifyAdmin } from "@/lib/verifyAdmin";
+import { NextResponse } from "next/server";
 
 export async function GET(req, { params }) {
   try {
@@ -46,6 +48,18 @@ import generateSlug from "@/utils/generateSlug";
 
 export async function PUT(req, { params }) {
   try {
+
+    const isAdmin = await verifyAdmin();
+
+if (!isAdmin) {
+  return NextResponse.json(
+    {
+      success: false,
+      message: "Unauthorized",
+    },
+    { status: 401 }
+  );
+}
     await dbConnect();
 
     const { id } = await params;
@@ -175,6 +189,18 @@ export async function PUT(req, { params }) {
 
 export async function DELETE(req, { params }) {
   try {
+    const isAdmin = await verifyAdmin();
+
+    if (!isAdmin) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unauthorized",
+        },
+        { status: 401 }
+      );
+    }
+
     await dbConnect();
 
     const { id } = await params;

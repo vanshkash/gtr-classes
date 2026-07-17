@@ -3,6 +3,7 @@ import Course from "@/models/Course";
 import Lecture from "@/models/Lecture";
 import Link from "next/link";
 import Note from "@/models/Note";
+import Animate from "@/components/animations/Animate";
 
 export default async function LearnPage({ params }) {
   const { courseSlug, lectureId } = await params;
@@ -50,6 +51,7 @@ export default async function LearnPage({ params }) {
   const featuredNote = notes[0];
 
   return (
+    <Animate>
     <div className="max-w-7xl mx-auto grid lg:grid-cols-[3fr_1.2fr] gap-10 px-2 sm:px-4 lg:px-6 py-4 sm:py-6">
       {/* LEFT SIDE */}
       <div className="flex flex-col items-start">
@@ -206,5 +208,6 @@ export default async function LearnPage({ params }) {
         </div>
       </div>
     </div>
+    </Animate>
   );
 }

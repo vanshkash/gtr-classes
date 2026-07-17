@@ -2,8 +2,23 @@ import dbConnect from "@/lib/dbConnect";
 import Course from "@/models/Course";
 import { revalidatePath } from "next/cache";
 import cloudinary from "@/lib/cloudinary";
+import { verifyAdmin } from "@/lib/verifyAdmin";
+import { NextResponse } from "next/server";
 
 export async function PUT(req, { params }) {
+
+  const isAdmin = await verifyAdmin();
+
+if (!isAdmin) {
+  return NextResponse.json(
+    {
+      success: false,
+      message: "Unauthorized",
+    },
+    { status: 401 }
+  );
+}
+
   await dbConnect();
 
   const { id } = await params;
@@ -47,6 +62,19 @@ export async function PUT(req, { params }) {
 
 
 export async function DELETE(req, { params }) {
+
+  const isAdmin = await verifyAdmin();
+
+if (!isAdmin) {
+  return NextResponse.json(
+    {
+      success: false,
+      message: "Unauthorized",
+    },
+    { status: 401 }
+  );
+}
+
   await dbConnect();
 
   const { id } = await params;

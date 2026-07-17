@@ -36,7 +36,7 @@ export default function PDFViewer({ pdfUrl }) {
         onLoadSuccess={({ numPages }) => setNumPages(numPages)}
       >
         {Array.from({
-          length: Math.min(numPages, 4), // Maximum 4 pages preview
+          length: Math.min(numPages, 1), // Maximum 1 page preview
         }).map((_, index) => (
           <div
             key={index}
