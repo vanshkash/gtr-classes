@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import UserMenu from "./UserMenu";
-import AuthButtons from "./AuthButtons";
 
 export default function MobileNav({ navLinks, isLoggedIn }) {
   const [open, setOpen] = useState(false);

@@ -27,7 +27,7 @@ export default function resetPasswordTemplate(resetLink) {
       </a>
 
       <p style="margin-top:30px;">
-        This link will expire in <strong>1 minutes</strong>.
+        This link will expire in <strong>3 minutes</strong>.
       </p>
 
       <p>

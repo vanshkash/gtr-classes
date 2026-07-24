@@ -11,6 +11,7 @@ export default function UserMenu({ mobile = false }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
   const router = useRouter();
+  const closeTimeout = useRef(null);
 
   const [logoutOpen, setLogoutOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -28,6 +29,12 @@ export default function UserMenu({ mobile = false }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+  return () => {
+    clearTimeout(closeTimeout.current);
+  };
+}, []);
 
   const handleLogout = async () => {
     try {
@@ -58,7 +65,23 @@ setTimeout(() => {
   };
 
   return (
-    <div ref={menuRef} className="relative">
+    <div
+  ref={menuRef}
+  className="relative"
+  onMouseEnter={() => {
+    if (!mobile) {
+      clearTimeout(closeTimeout.current);
+      setOpen(true);
+    }
+  }}
+  onMouseLeave={() => {
+    if (!mobile) {
+      closeTimeout.current = setTimeout(() => {
+        setOpen(false);
+      }, 300);
+    }
+  }}
+>
       <button onClick={() => setOpen(!open)}>
         <CircleUser className="h-8 w-8 text-slate-700 hover:bg-slate-100 transition-colors items-center justify-center" />
       </button>

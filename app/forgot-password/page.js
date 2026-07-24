@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [countdown, setCountdown] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +15,7 @@ export default function ForgotPasswordPage() {
     setLoading(true);
     setMessage("");
 
+    
     try {
       const res = await fetch("/api/auth/forgot-password", {
         method: "POST",
@@ -22,16 +24,29 @@ export default function ForgotPasswordPage() {
         },
         body: JSON.stringify({ email }),
       });
-
+      
       const data = await res.json();
-
+      
       setMessage(data.message);
+      if (res.ok) {
+    setCountdown(60);
+  }
     } catch (error) {
       setMessage("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+  if (countdown <= 0) return;
+
+  const timer = setInterval(() => {
+    setCountdown((prev) => prev - 1);
+  }, 1000);
+
+  return () => clearInterval(timer);
+}, [countdown]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
@@ -59,11 +74,15 @@ export default function ForgotPasswordPage() {
           />
 
           <button
-            disabled={loading}
-            className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
-          >
-            {loading ? "Sending..." : "Send Reset Link"}
-          </button>
+  disabled={loading || countdown > 0}
+  className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+>
+  {loading
+    ? "Sending..."
+    : countdown > 0
+    ? `Resend in ${countdown}s`
+    : "Send Reset Link"}
+</button>
         </form>
 
         {message && (

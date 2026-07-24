@@ -47,7 +47,7 @@ const hashedToken = crypto
 
 // Save hashed token and expiry
 user.resetPasswordToken = hashedToken;
-user.resetPasswordExpires = Date.now() + 1000 * 60 * 1; // 15 minutes
+user.resetPasswordExpires = Date.now() + 1000 * 60 * 3; // 3 minutes
 
 await user.save();
 // Next step yahan se continue hoga...
