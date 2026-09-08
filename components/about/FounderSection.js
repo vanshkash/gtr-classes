@@ -43,7 +43,7 @@ export default function FounderSection() {
               </span>
 
               <h3 className="mt-3 text-3xl font-bold text-slate-900">
-                Mr. Ram Kumar Sir
+                Mr. Ram Sir
               </h3>
 
               <p className="mt-6 text-sm sm:text-base text-slate-600 leading-6 sm:leading-8">

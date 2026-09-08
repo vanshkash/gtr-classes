@@ -3,6 +3,7 @@ import dbConnect from "@/lib/dbConnect";
 import Note from "@/models/Note";
 import cloudinary from "@/lib/cloudinary";
 import generateSlug from "@/utils/generateSlug";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 // GET API (already working)
 export async function GET() {
