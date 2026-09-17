@@ -17,30 +17,34 @@ const user = await getCurrentUser();
     status: "paid",
   }).populate("noteId");
 
+  const validPurchases = purchases.filter(
+    (purchase) => purchase.noteId
+  );
+
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="mx-auto max-w-5xl">
 
         <h1 className="mb-8 text-3xl font-bold">
-          My Purchased Notes
+          My Purchased Materials
         </h1>
 
-        {purchases.length === 0 ? (
+        {validPurchases.length === 0 ? (
           <div className="rounded-xl bg-white p-10 text-center shadow">
             <p className="text-gray-500">
-              You haven't purchased any notes yet.
+               You haven't purchased any materials yet.
             </p>
 
             <Link
               href="/notes"
               className="mt-5 inline-block rounded-lg bg-blue-600 px-5 py-3 text-white"
             >
-              Browse Notes
+              Browse Materials
             </Link>
           </div>
         ) : (
           <div className="space-y-5">
-            {purchases.map((purchase) => (
+            {validPurchases.map((purchase) => (
               <div
                 key={purchase._id}
                 className="flex items-center justify-between rounded-xl bg-white p-5 shadow"
