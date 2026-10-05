@@ -79,10 +79,12 @@ if (token) {
       );
     }
 
-   return new Response(cloudinaryResponse.body, {
+   const fileName = encodeURIComponent(`${note.title}.pdf`);
+
+return new Response(cloudinaryResponse.body, {
   headers: {
     "Content-Type": "application/pdf",
-    "Content-Disposition": `attachment; filename="${note.title}.pdf"`,
+    "Content-Disposition": `attachment; filename*=UTF-8''${fileName}`,
     "Cache-Control": "no-store, no-cache, must-revalidate",
     Pragma: "no-cache",
     Expires: "0",
